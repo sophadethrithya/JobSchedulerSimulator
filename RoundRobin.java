@@ -16,6 +16,7 @@ public class RoundRobin {
      //RRNum is the quantum time/ time slice
     public int RRNum;
     public HashMap<String, Integer> data = new HashMap<>();
+    public float result;
 
     //This class is called for RoundRobin
     public RoundRobin(String filepath, int RRNum) throws FileNotFoundException {
@@ -23,8 +24,8 @@ public class RoundRobin {
         try {
             this.RRNum = RRNum;
             this.data = getData(filepath);
-            Record2 record = compute(this.data);
-//            displayResult(record);
+            this.result = compute(this.data);
+
         }
         catch (Exception e)
         {
@@ -52,7 +53,7 @@ public class RoundRobin {
     }
 
     //This is the class where RoundRobin scheduling algorithm are implemented
-    public Record2 compute(HashMap<String, Integer> data) {
+    public float compute(HashMap<String, Integer> data) {
 
         Record2 record = new Record2();
         //I am using Stack to keep track which END time that each processes is completed to find Average Turn Around Time
@@ -129,7 +130,7 @@ public class RoundRobin {
         System.out.println();
 
 
-        return record;
+        return turnAroundTime;
 
     }
 

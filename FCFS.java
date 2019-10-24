@@ -13,6 +13,8 @@ class Record {
 public class FCFS {
     //This hashmap are created to store all the data from the file
      protected HashMap<String, Integer> data = new HashMap<>();
+     public float result;
+
 
      //Once call this instructor in main() it will get all the data
     //from file and do the scheduling computation then display the result
@@ -20,7 +22,7 @@ public class FCFS {
         try {
             this.data = getData(filepath);
             Record record = compute(this.data);
-            displayResult(record);
+            this.result = displayResult(record);
         }
         catch (Exception e)
         {
@@ -70,7 +72,7 @@ public class FCFS {
 
     //This is where result are displayed using this displayResult
     //To find Average Turn Around Time : take all the data in End time arraylist and divided by the size of the End time arraylist
-    public void displayResult(Record record)
+    public float displayResult(Record record)
     {
         System.out.println("First Come First Serve: ");
         System.out.println("Schedule Table:");
@@ -87,6 +89,7 @@ public class FCFS {
         turnAroundTime /= record.stop.size();
         System.out.println("\nAverage Turn Around Time: "+ turnAroundTime);
         System.out.println();
+        return turnAroundTime;
     }
 
 }

@@ -9,6 +9,7 @@ class Process {
     String processorNum;
     int runningTime;
 
+
     public Process(String processorNum, int runningTime) {
         this.processorNum = processorNum;
         this.runningTime = runningTime;
@@ -17,13 +18,14 @@ class Process {
 
 public class SJF{
     private PriorityQueue<Process>data = new PriorityQueue<>();
+    public float result;
 
     //This class will display and compute for the result of Shortest Job First
     public SJF(String filepath) throws FileNotFoundException{
         try{
             this.data = getData(filepath);
             Record record = compute(this.data);
-            displayResult(record);
+            this.result = displayResult(record);
 
 
         }
@@ -71,7 +73,7 @@ public class SJF{
     }
 
     //Display the result
-    public void displayResult(Record record)
+    public float displayResult(Record record)
     {
         System.out.println("Shortest Job First: ");
         System.out.println("Schedule Table:");
@@ -91,6 +93,7 @@ public class SJF{
         turnAroundTime /= record.start.size();
         System.out.println("\nAverage Turn Around Time:" + turnAroundTime);
         System.out.println();
+        return turnAroundTime;
     }
 }
 //Comparator to sort Process in ascending order
